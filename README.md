@@ -1,0 +1,1 @@
+A basic game of Mastermind written in Ruby. 

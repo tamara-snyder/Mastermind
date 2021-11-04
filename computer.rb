@@ -1,13 +1,17 @@
 class Computer
-  attr_reader :code
-  def initialize
+  attr_accessor :master
+  def initialize(master)
     # @role = role
-    @code = Array.new(4){|i| i = rand(1..6)}
+    @master = master
   end
 
-  # def create_code
-  #   @code = Array.new(4){|i| i = rand(1..6)}
-  # end
+  def create_code
+    @master = Array.new(4){|i| i = rand(1..6)}
+  end
+
+  def guess
+    Array.new(4){|i| i = rand(1..6)}
+  end
 end
 
 # TESTING CODE GENERATOR

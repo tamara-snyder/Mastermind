@@ -1,16 +1,18 @@
+require_relative "display.rb"
+
 class Computer
-  attr_accessor :master
-  def initialize(master)
-    # @role = role
-    @master = master
+  attr_accessor :secret_code, :current_guess
+  def initialize
+    @secret_code = ""
+    @current_guess = ""
   end
 
-  def create_code
-    @master = Array.new(4){|i| i = rand(1..6)}
+  def set_secret_code
+    @secret_code = guess
   end
 
   def guess
-    Array.new(4){|i| i = rand(1..6)}
+    @current_guess = Array.new(4){|i| i = rand(1..6)}.join("")
   end
 end
 

@@ -1,10 +1,22 @@
+require_relative "display.rb"
+
 class Player
-  attr_accessor :code
-  attr_reader :role, :name
-  def initialize(role)
+  attr_accessor :secret_code, :current_guess
+  attr_reader :name
+  def initialize
     @name = "You"
-    @role = role
-    @code = ""
+    @secret_code = ""
+    @current_guess = ""
+  end
+
+  def choose_role
+    role = "0"
+    until role == "1" || role == "2"
+      puts role
+      puts "Press '1' to be the code-setter or '2' to be the code-breaker:"
+      role = gets.chomp
+    end
+    role == "1" ? "codesetter" : "codebreaker"
   end
 
   # Code must be 4 digits between 1 and 6
@@ -19,30 +31,21 @@ class Player
   def guess
     code = ""
     until valid_code?(code)
-      puts "Enter a 4-digit code using only numbers 1-6: "
+      puts "Enter a 4-digit code using only numbers 1-6:"
       code = get_code
     end
     # Turn string into arr of integers
-    @code = code #.split("").map(&:to_i)
-    # code
+    @current_guess = code #.split("").map(&:to_i)
+    code
   end
 
-  def self.get_role
-    input = ""
-    until input == "1" || input == "2"
-      puts "Enter '1' to be the code maker or '2' to be the code breaker:"
-      input = gets.chomp
-    end
-    # Return as integer to be used as argument to new player object
-    input
-  end
-
-  def set_master
-    puts "Enter your master code:"
-    until valid_code?(@code)
-      puts "Enter a 4-digit code using only numbers 1-6: "
-      @code = get_code
-    end
-    @code
+  def set_secret_code
+    puts "Enter your secret code."
+    @secret_code = guess
+    # until valid_code?(code)
+    #   puts "[Enter a 4-digit code using only numbers 1-6]: "
+    #   @secret_code = get_code
+    # end
+    # @secret_code
   end
 end

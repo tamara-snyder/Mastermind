@@ -1,14 +1,16 @@
-require 'colorize'
+require "colorize"
+require_relative "style.rb"
+require_relative "printing.rb"
 
 # Create a new Code object for each turn
 class Code
-  # Colors: red, blue, yellow, green, white, and black
+  include Printing
+  
   attr_reader :sequence
   def initialize(sequence)
     @sequence = sequence
   end
 
-  # Colorize peg based on its number
   def decorate(code)
     code = code
     case code
@@ -28,22 +30,10 @@ class Code
       "Enter a number 1-6"
     end
   end
-
-  # Take a string of numbers and split them, colorize them, and print in a row
-  def print_sequence
-    codes = @sequence.split("")
-    decorated = ""
-    codes.each {|code| decorated += decorate(code) + " "}
-    puts decorated
-  end
 end
 
-# Create a new Keys object for each turn
-class Keys
-  # white, red
+class Pegs
   attr_reader :correct, :semi_correct
-
-  # Takes an array of length 2
   def initialize(matches)
     # Both will be numbers
     @correct = matches[0]
@@ -58,21 +48,6 @@ class Keys
       " * ".white
     end
   end
-
-  # Print feedback based on @correct and @semi_correct variables in this instance of Keys
-  def print_feedback
-    feedback = "Clues: "
-
-    if @correct > 0
-      @correct.times {feedback += decorate("correct")}
-    end
-
-    if @semi_correct > 0
-      @semi_correct.times {feedback += decorate("semi-correct")}
-    end
-
-    puts feedback
-  end
 end
 
 
@@ -80,5 +55,5 @@ end
 # my_code = Code.new("1234")
 # my_code.print_sequence
 
-# results = Keys.new(1, 2)
+# results = Pegs.new(1, 2)
 # results.print_feedback

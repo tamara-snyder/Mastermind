@@ -1,4 +1,3 @@
-# require_relative 'players.rb'
 require './game_pieces'
 require './player'
 require './computer'
@@ -61,14 +60,14 @@ class Game
     player_code = @player.code.clone
     comp_code = @computer.code.clone
 
-    correct = matches(comp_code, player_code)
-    semi_correct = semi_matches(comp_code, player_code)
+    correct = full_matches(comp_code, player_code)
+    semi_correct = partial_matches(comp_code, player_code)
 
     # Initialize Keys object for this guess and print feedback
     [correct, semi_correct]
   end
 
-  def matches(comp_code, player_code)
+  def full_matches(comp_code, player_code)
     correct = 0
 
     comp_code.each_with_index do |item, index|
@@ -80,7 +79,7 @@ class Game
     correct
   end
 
-  def semi_matches(comp_code, player_code)
+  def partial_matches(comp_code, player_code)
     semi_correct = 0
 
     player_code.each_index do |index|

@@ -1,4 +1,4 @@
-require 'colorize'
+require './style'
 
 # Create a new Code object for each turn
 class Code
@@ -13,17 +13,17 @@ class Code
     code = code
     case code
     when "1"
-      " #{code} ".black.on_light_red
+      " #{code} ".on_light_pink
     when "2"
-      " #{code} ".black.on_cyan
+      " #{code} ".on_blue
     when "3"
-      " #{code} ".black.on_light_yellow
+      " #{code} ".on_yellow
     when "4"
-      " #{code} ".black.on_green
+      " #{code} ".on_green
     when "5"
-      " #{code} ".black.on_light_white
+      " #{code} ".on_purple
     when "6"
-      " #{code} ".black.on_light_black
+      " #{code} ".on_pink
     else
       "Enter a number 1-6"
     end

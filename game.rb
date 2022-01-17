@@ -25,7 +25,6 @@ class Game
 
   def guess
     until game_over?
-      p @computer.code
       print_turn
       print_code
       feedback
@@ -43,7 +42,7 @@ class Game
   end
 
   def print_turn
-    puts "\nTurn ##{@rounds}:"
+    puts "\nRound #{@rounds}/12:"
   end
 
   def print_code

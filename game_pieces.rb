@@ -74,11 +74,3 @@ class Keys
     puts feedback
   end
 end
-
-
-# TEST CODE
-# my_code = Code.new("1234")
-# my_code.print_sequence
-
-# results = Keys.new(1, 2)
-# results.print_feedback

@@ -1,3 +1,4 @@
+require './style'
 require './game_pieces'
 require './player'
 require './computer'
@@ -32,16 +33,17 @@ class Game
   end
 
   def self.print_instructions
-    puts "Welcome to Mastermind"
-    puts "The game is simple. There are are six different colors you can use: "
+    puts "  Mastermind  ".white.bold.on_purple
+    puts "\nThe computer will choose a sequence of four colors. 
+      \nThere are are six different colors you can use to guess the code:\n "
     Code.new("123456").print_sequence
-    puts "You can be the code maker or the code breaker."
-    puts "The code maker chooses a combination of four numbers 1-6."
-    puts "The code breaker must guess the secret code in 12 tries or less!"
+    puts "\n A red star #{"*".red.bold} means some color in your code was the #{"right color".bold} and in the #{"right place".bold}."
+    puts "\n A red star #{"*".white.bold} means some color in your code was the #{"right color".bold}, but in the #{"wrong place".bold}."
+    puts "\nGuess the secret code in 12 tries or less!"
   end
 
   def print_turn
-    puts "\nRound #{@rounds}/12:"
+    puts "\nRound #{@rounds}/12:".bold
   end
 
   def print_code
@@ -102,17 +104,17 @@ class Game
     if winner?
       puts "You cracked the code!"
     else
-      puts "You didn't guess the code this time."
+      puts "You didn't guess the code this time. The code was '#{@computer.code.join}'"
     end
   end
 
   def new_game
-    puts "Play again? Press 'y' for yes or 'n' for no."
+    puts "Play again? Press 'y' for yes or 'n' for no.".bold
     input = gets.chomp.downcase
     if input == 'y'
       play_game
     else
-      puts "Thanks for playing!"
+      puts "Thanks for playing!".bold
     end
   end
 
